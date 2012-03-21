@@ -230,4 +230,3 @@ class GUIFrame: public wxFrame
 };
 
 #endif // __LIBRESCRIBE_GUI_FRAME_H__
-
