@@ -14,8 +14,9 @@ You should have received a copy of the GNU General Public License
 along with LibreScribe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _SMARTPEN_H_
-#define _SMARTPEN_H_
+#ifndef __LIBRESCRIBE_SMARTPEN_H__
+#define __LIBRESCRIBE_SMARTPEN_H__
+
 #include <openobex/obex.h>
 //#include <string.h>
 #include <stdlib.h>
@@ -31,13 +32,14 @@ along with LibreScribe.  If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <fstream>
 
-#define LS_VENDOR_ID 0x1cfb //LiveScribe Vendor ID
-inline bool is_ls_pulse(unsigned int c) { return c == 0x1020; } //LiveScribe Pulse(TM) Smartpen
-inline bool is_ls_echo(unsigned int c) { return c == 0x1030 || c == 0x1032; } //LiveScribe Echo(TM) Smartpen
+#define LS_VENDOR_ID 0x1cfb // LiveScribe Vendor ID
+inline bool is_ls_pulse(unsigned int c) { return c == 0x1020; } // LiveScribe Pulse(TM) Smartpen
+inline bool is_ls_echo(unsigned int c) { return c == 0x1030 || c == 0x1032; } // LiveScribe Echo(TM) Smartpen
 
 struct libusb_device_handle *findSmartpen();
 
-struct obex_state {
+struct obex_state
+{
     obex_t *handle;
     int req_done;
     char *body;
@@ -46,7 +48,8 @@ struct obex_state {
     int connid;
 };
 
-class Smartpen {
+class Smartpen
+{
 private:
     obex_t* handle;
 
@@ -73,4 +76,5 @@ public:
     bool  setName(const char* newName);
 };
 
-#endif
+#endif // __LIBRESCRIBE_SMARTPEN_H__
+
