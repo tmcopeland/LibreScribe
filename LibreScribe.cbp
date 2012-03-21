@@ -67,18 +67,18 @@
 			<Add after="find ./bin/ -mindepth 1 -maxdepth 1 -type d | xargs -n 1 cp -fv -L ./stf.py ./convert_stfs.sh" />
 			<Mode after="always" />
 		</ExtraCommands>
-		<Unit filename="AboutDialog.cpp" />
-		<Unit filename="AboutDialog.h" />
-		<Unit filename="DeviceInfo.cpp" />
-		<Unit filename="DeviceInfo.h" />
-		<Unit filename="GUIFrame.cpp" />
-		<Unit filename="GUIFrame.h" />
-		<Unit filename="LibreScribe.cpp" />
-		<Unit filename="LibreScribe.h" />
-		<Unit filename="include/Smartpen.h" />
+		<Unit filename="src/AboutDialog.cpp" />
+		<Unit filename="src/AboutDialog.h" />
+		<Unit filename="src/DeviceInfo.cpp" />
+		<Unit filename="src/DeviceInfo.h" />
+		<Unit filename="src/GUIFrame.cpp" />
+		<Unit filename="src/GUIFrame.h" />
+		<Unit filename="src/LibreScribe.cpp" />
+		<Unit filename="src/LibreScribe.h" />
+		<Unit filename="src/Smartpen.h" />
 		<Unit filename="src/BackgroundMonitor.cpp" />
 		<Unit filename="src/Smartpen.cpp" />
-		<Unit filename="wx_pch.h">
+		<Unit filename="src/wx_pch.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
@@ -91,11 +91,11 @@
 			<debugger />
 			<lib_finder disable_auto="1" />
 			<wxsmith version="1">
-				<gui name="wxWidgets" src="LibreScribe.cpp" main="GUIFrame" init_handlers="necessary" language="CPP" />
+				<gui name="wxWidgets" src="src/LibreScribe.cpp" main="GUIFrame" init_handlers="necessary" language="CPP" />
 				<resources>
-					<wxFrame wxs="wxsmith/GUIFrame.wxs" src="GUIFrame.cpp" hdr="GUIFrame.h" name="GUIFrame" language="CPP" />
-					<wxDialog wxs="wxsmith/DeviceInfo.wxs" src="DeviceInfo.cpp" hdr="DeviceInfo.h" name="DeviceInfo" language="CPP" />
-					<wxDialog wxs="wxsmith/AboutDialog.wxs" src="AboutDialog.cpp" hdr="AboutDialog.h" name="AboutDialog" language="CPP" />
+					<wxFrame wxs="wxsmith/GUIFrame.wxs" src="src/GUIFrame.cpp" hdr="src/GUIFrame.h" name="GUIFrame" language="CPP" />
+					<wxDialog wxs="wxsmith/DeviceInfo.wxs" src="src/DeviceInfo.cpp" hdr="src/DeviceInfo.h" name="DeviceInfo" language="CPP" />
+					<wxDialog wxs="wxsmith/AboutDialog.wxs" src="src/AboutDialog.cpp" hdr="src/AboutDialog.h" name="AboutDialog" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>
