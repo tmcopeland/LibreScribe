@@ -11,7 +11,7 @@ AR = sh -c -x "ar
 LD = sh -c -x "g++
 WINDRES = windres
 
-INC =  -I/usr/include/libxml2 -Iinclude -Ilibusb/libusb
+INC =  -I/usr/include/libxml2 -Ilibusb/libusb
 CFLAGS =  -Wall `wx-config --cflags` -Winvalid-pch -include wx_pch.h `python-config --include` `pkg-config --libs --cflags glib-2.0` -DWX_PRECOMP
 RESINC = 
 LIBDIR =  -Llibusb/libusb/.libs -Llibusb/libusb
