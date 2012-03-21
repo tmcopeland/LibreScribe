@@ -19,7 +19,7 @@ along with LibreScribe.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DeviceInfo.h"
 #include "AboutDialog.h"
-#include "Smartpen.h"
+#include "src/Smartpen.h"
 #include <vector>
 uint16_t refreshDeviceState();
 #ifndef WX_PRECOMP
