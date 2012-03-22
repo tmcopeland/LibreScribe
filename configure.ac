@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(librescribe, 0.1)
+AC_INIT([librescribe],[0.1])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([1.11])
@@ -18,7 +18,7 @@ dnl *************************************************************************
 
 #AM_GLIB_GNU_GETTEXT
 
-#LT_INIT
+LT_INIT
 
 dnl Check for required packages.
 
@@ -43,8 +43,9 @@ libraries are installed (returned by 'wx-config --libs' or
 variable, and wxWidgets version is $(reqwx) or above])
 fi
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 src/Makefile
 ])
+AC_OUTPUT
 
