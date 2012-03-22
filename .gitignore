@@ -2,6 +2,7 @@ bin/
 obj/
 data/
 wx_pch.h.gch/
+*.o
 *.stf
 *.pyc
 *.depend
