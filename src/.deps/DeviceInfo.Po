@@ -1,4 +1,4 @@
-DeviceInfo.o: DeviceInfo.cpp wx_pch.h /usr/include/wx-2.8/wx/wxprec.h \
+DeviceInfo.o: DeviceInfo.cc wx_pch.h /usr/include/wx-2.8/wx/wxprec.h \
  /usr/include/wx-2.8/wx/defs.h /usr/include/wx-2.8/wx/platform.h \
  /usr/lib/x86_64-linux-gnu/wx/include/gtk2-unicode-release-2.8/wx/setup.h \
  /usr/include/wx-2.8/wx/chkconf.h /usr/include/wx-2.8/wx/features.h \
