@@ -23,9 +23,11 @@ dnl *************************************************************************
 dnl Check for required packages.
 
 PKG_CHECK_MODULES([glib], [glib-2.0])
-PKG_CHECK_MODULES([udev], [udev])
 PKG_CHECK_MODULES([libxmlxx], [libxml++-2.6])
+PKG_CHECK_MODULES([libusb], [libusb-1.0])
 PKG_CHECK_MODULES([openobex], [openobex])
+PKG_CHECK_MODULES([Python], [python-2.7])
+PKG_CHECK_MODULES([udev], [udev])
 
 dnl Check for wxWidgets
 AM_OPTIONS_WXCONFIG
