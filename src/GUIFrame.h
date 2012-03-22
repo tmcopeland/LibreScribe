@@ -21,7 +21,7 @@
 
 #include "DeviceInfo.h"
 #include "AboutDialog.h"
-#include "src/Smartpen.h"
+#include "Smartpen.h"
 #include <vector>
 uint16_t refreshDeviceState();
 #ifndef WX_PRECOMP

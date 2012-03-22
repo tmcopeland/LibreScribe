@@ -23,7 +23,7 @@ along with LibreScribe.  If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <cstdio>
 #include <iostream>
-#include "Smartpen.h"
+#include "src/Smartpen.h"
 #ifndef WX_PRECOMP
 	//(*HeadersPCH(DeviceInfo)
 	#include <wx/gauge.h>

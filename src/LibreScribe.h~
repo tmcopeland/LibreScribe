@@ -19,7 +19,7 @@
 #ifndef __LIBRESCRIBE_H__
 #define __LIBRESCRIBE_H__
 
-//#pragma GCC system_header
+#pragma GCC system_header
 #include <Python.h>
 #include <wx/app.h>
 
