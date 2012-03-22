@@ -52,16 +52,16 @@ bin_PROGRAMS = librescribe
 
 librescribe_SOURCES =\
 	AboutDialog.h\
-	AboutDialog.cpp\
-	BackgroundMonitor.cpp\
+	AboutDialog.cc\
+	BackgroundMonitor.cc\
 	DeviceInfo.h\
-	DeviceInfo.cpp\
+	DeviceInfo.cc\
 	GUIFrame.h\
-	GUIFrame.cpp\
+	GUIFrame.cc\
 	LibreScribe.h\
-	LibreScribe.cpp\
+	LibreScribe.cc\
 	Smartpen.h\
-	Smartpen.cpp\
+	Smartpen.cc\
 	wx_pch.h
 
 librescribe_LDFLAGS =\
@@ -115,23 +115,23 @@ debug: before-build build-debug after-build
 out-debug: $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(librescribe_LINK) $(librescribe_LDFLAGS) $(librescribe_LDADD) $(OBJ_DEBUG) -o $(OUT_DEBUG)
 
-$(OBJDIR_DEBUG)/AboutDialog.o: AboutDialog.cpp
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c AboutDialog.cpp -o $(OBJDIR_DEBUG)/AboutDialog.o
+$(OBJDIR_DEBUG)/AboutDialog.o: AboutDialog.cc
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c AboutDialog.cc -o $(OBJDIR_DEBUG)/AboutDialog.o
 
-$(OBJDIR_DEBUG)/BackgroundMonitor.o: BackgroundMonitor.cpp
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c BackgroundMonitor.cpp -o $(OBJDIR_DEBUG)/BackgroundMonitor.o
+$(OBJDIR_DEBUG)/BackgroundMonitor.o: BackgroundMonitor.cc
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c BackgroundMonitor.cc -o $(OBJDIR_DEBUG)/BackgroundMonitor.o
 
-$(OBJDIR_DEBUG)/DeviceInfo.o: DeviceInfo.cpp
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c DeviceInfo.cpp -o $(OBJDIR_DEBUG)/DeviceInfo.o
+$(OBJDIR_DEBUG)/DeviceInfo.o: DeviceInfo.cc
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c DeviceInfo.cc -o $(OBJDIR_DEBUG)/DeviceInfo.o
 
-$(OBJDIR_DEBUG)/GUIFrame.o: GUIFrame.cpp
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c GUIFrame.cpp -o $(OBJDIR_DEBUG)/GUIFrame.o
+$(OBJDIR_DEBUG)/GUIFrame.o: GUIFrame.cc
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c GUIFrame.cc -o $(OBJDIR_DEBUG)/GUIFrame.o
 
-$(OBJDIR_DEBUG)/LibreScribe.o: LibreScribe.cpp
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c LibreScribe.cpp -o $(OBJDIR_DEBUG)/LibreScribe.o
+$(OBJDIR_DEBUG)/LibreScribe.o: LibreScribe.cc
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c LibreScribe.cc -o $(OBJDIR_DEBUG)/LibreScribe.o
 
-$(OBJDIR_DEBUG)/Smartpen.o: Smartpen.cpp
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c Smartpen.cpp -o $(OBJDIR_DEBUG)/Smartpen.o
+$(OBJDIR_DEBUG)/Smartpen.o: Smartpen.cc
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c Smartpen.cc -o $(OBJDIR_DEBUG)/Smartpen.o
 
 clean-debug:
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
