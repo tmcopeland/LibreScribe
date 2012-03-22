@@ -1,6 +1,6 @@
 ## Process this file to produce Makefile.in
 WORKDIR = `pwd`
-PROJECT_DIRECTORY = $(WORKDIR)/../
+PROJECT_DIRECTORY = $(WORKDIR)/..
 
 OBJDIR_DEBUG = $(PROJECT_DIRECTORY)/obj/Debug
 OUT_DEBUG = $(WORKDIR)/../bin/Debug/LibreScribe
@@ -30,9 +30,8 @@ AM_CPPFLAGS =\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"\
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\"\
 	-DPACAKGE_DATA_DIR=\""$(pkgdatadir)"\"\
-	$(glib_CFLAGS)\
+	-DWX_PRECOMP\
 	$(libxmlxx_CFLAGS)\
-	$(udev_CFLAGS)\
 	$(WX_CPPFLAGS)
 
 AM_CXXFLAGS =\
@@ -42,9 +41,11 @@ AM_CFLAGS =\
 	-Wall\
 	-O3\
 	-g\
+	$(glib_CFLAGS)\
 	$(libusb_CFLAGS)\
 	$(openobex_CFLAGS)\
 	$(Python_CFLAGS)\
+	$(udev_CFLAGS)\
 	$(WX_CFLAGS_ONLY)
 
 bin_PROGRAMS = librescribe
@@ -80,15 +81,20 @@ librescribe_LDADD =\
 librescribe_LINK = `sh -c -x "g++"`
 
 #all: before-build build-debug build-release after-build
-all: before-build build-debug after-build
+all: info before-build build-debug after-build
 
-clean: clean-debug clean-release
+#clean: clean-debug clean-release
+clean-local: clean-debug
+
+info-local:
+	echo -e "Python cflags: $(Python_CFLAGS)"
+	echo -e "Python libs: $(Python_LIBS)"
 
 before-build:
 	cd $(PROJECT_DIRECTORY); rm -rfv ./bin
-	cd $(PROJECT_DIRECTORY)/libusb/; [ -f configure ] || sh autogen.sh
-	cd $(PROJECT_DIRECTORY)/libusb/; [ -f Makefile ] || ./configure
-	cd $(PROJECT_DIRECTORY)/libusb/; [ -f libusb/.libs/libusb-1.0.a ] || make
+	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f configure ] || sh autogen.sh
+	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f Makefile ] || ./configure
+	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f libusb/.libs/libusb-1.0.a ] || make
 
 after-build:
 	cd $(PROJECT_DIRECTORY)
@@ -110,17 +116,25 @@ out-debug: $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(librescribe_LINK) $(librescribe_LDFLAGS) $(librescribe_LDADD) $(OBJ_DEBUG) -o $(OUT_DEBUG)
 
 $(OBJDIR_DEBUG)/AboutDialog.o: AboutDialog.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c AboutDialog.cpp -o $(OBJDIR_DEBUG)/AboutDialog.o
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c AboutDialog.cpp -o $(OBJDIR_DEBUG)/AboutDialog.o
 
 $(OBJDIR_DEBUG)/BackgroundMonitor.o: BackgroundMonitor.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c BackgroundMonitor.cpp -o $(OBJDIR_DEBUG)/BackgroundMonitor.o
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c BackgroundMonitor.cpp -o $(OBJDIR_DEBUG)/BackgroundMonitor.o
 
 $(OBJDIR_DEBUG)/DeviceInfo.o: DeviceInfo.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c DeviceInfo.cpp -o $(OBJDIR_DEBUG)/DeviceInfo.o
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c DeviceInfo.cpp -o $(OBJDIR_DEBUG)/DeviceInfo.o
 
 $(OBJDIR_DEBUG)/GUIFrame.o: GUIFrame.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c GUIFrame.cpp -o $(OBJDIR_DEBUG)/GUIFrame.o
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c GUIFrame.cpp -o $(OBJDIR_DEBUG)/GUIFrame.o
 
 $(OBJDIR_DEBUG)/LibreScribe.o: LibreScribe.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c LibreScribe.cpp -o $(OBJDIR_DEBUG)/LibreScribe.o
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c LibreScribe.cpp -o $(OBJDIR_DEBUG)/LibreScribe.o
+
+$(OBJDIR_DEBUG)/Smartpen.o: Smartpen.cpp
+	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c Smartpen.cpp -o $(OBJDIR_DEBUG)/Smartpen.o
+
+clean-debug:
+	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
+	rm -rf $(PROJECT_DIRECTORY)/bin/Debug
+	rm -rf $(OBJDIR_DEBUG)
 
