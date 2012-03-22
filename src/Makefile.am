@@ -1,11 +1,37 @@
 ## Process this file to produce Makefile.in
+WORKDIR = `pwd`
+PROJECT_DIRECTORY = $(WORKDIR)/../
+
+OBJDIR_DEBUG = $(PROJECT_DIRECTORY)/obj/Debug
+OUT_DEBUG = $(WORKDIR)/../bin/Debug/LibreScribe
+DEP_DEBUG = 
+
+OBJDIR_RELEASE = $(PROJECT_DIRECTORY)/obj/Release
+OUT_RELEASE = $(PROJECT_DIRECTORY)/bin/Release/LibreScribe
+DEP_RELEASE = 
+
+OBJ_DEBUG =\
+	$(OBJDIR_DEBUG)/AboutDialog.o\
+	$(OBJDIR_DEBUG)/BackgroundMonitor.o\
+	$(OBJDIR_DEBUG)/DeviceInfo.o\
+	$(OBJDIR_DEBUG)/GUIFrame.o\
+	$(OBJDIR_DEBUG)/LibreScribe.o\
+	$(OBJDIR_DEBUG)/Smartpen.o
+
+OBJ_RELEASE =\
+	$(OBJDIR_RELEASE)/AboutDialog.o\
+	$(OBJDIR_RELEASE)/BackgroundMonitor.o\
+	$(OBJDIR_RELEASE)/DeviceInfo.o\
+	$(OBJDIR_RELEASE)/GUIFrame.o\
+	$(OBJDIR_RELEASE)/LibreScribe.o\
+	$(OBJDIR_RELEASE)/Smartpen.o
+
 AM_CPPFLAGS =\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"\
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\"\
 	-DPACAKGE_DATA_DIR=\""$(pkgdatadir)"\"\
 	$(glib_CFLAGS)\
 	$(libxmlxx_CFLAGS)\
-	$(openobex_CFLAGS)\
 	$(udev_CFLAGS)\
 	$(WX_CPPFLAGS)
 
@@ -14,7 +40,11 @@ AM_CXXFLAGS =\
 
 AM_CFLAGS =\
 	-Wall\
+	-O3\
 	-g\
+	$(libusb_CFLAGS)\
+	$(openobex_CFLAGS)\
+	$(Python_CFLAGS)\
 	$(WX_CFLAGS_ONLY)
 
 bin_PROGRAMS = librescribe
@@ -34,12 +64,63 @@ librescribe_SOURCES =\
 	wx_pch.h
 
 librescribe_LDFLAGS =\
-	-Wl,--export-dynamic
+	-Wl,--export-dynamic\
+	-Winvalid-pch\
+	-include wx_pch.h
 
 librescribe_LDADD =\
 	$(glib_LIBS)\
+	$(libusb_LIBS)\
 	$(libxmlxx_LIBS)\
 	$(openobex_LIBS)\
+	$(Python_LIBS)\
 	$(udev_LIBS)\
 	$(WX_LIBS)
+
+librescribe_LINK = `sh -c -x "g++"`
+
+#all: before-build build-debug build-release after-build
+all: before-build build-debug after-build
+
+clean: clean-debug clean-release
+
+before-build:
+	cd $(PROJECT_DIRECTORY); rm -rfv ./bin
+	cd $(PROJECT_DIRECTORY)/libusb/; [ -f configure ] || sh autogen.sh
+	cd $(PROJECT_DIRECTORY)/libusb/; [ -f Makefile ] || ./configure
+	cd $(PROJECT_DIRECTORY)/libusb/; [ -f libusb/.libs/libusb-1.0.a ] || make
+
+after-build:
+	cd $(PROJECT_DIRECTORY)
+	find ./bin/ -mindepth 1 -maxdepth 1 -type d | xargs -n 1 cp -rfv -L ./res ./xdg
+	find ./bin/ -mindepth 1 -maxdepth 1 -type d | xargs -n 1 cp -fv -L ./stf.py ./convert_stfs.sh
+
+before-debug:
+	test -d bin/Debug || mkdir -p bin/Debug
+	test -d $(OBJDIR_DEBUG) || mkdir -p $(OBJDIR_DEBUG)
+
+after-debug:
+	
+build-debug:
+	before-debug out-debug after-debug
+
+debug: before-build build-debug after-build
+
+out-debug: $(OBJ_DEBUG) $(DEP_DEBUG)
+	$(librescribe_LINK) $(librescribe_LDFLAGS) $(librescribe_LDADD) $(OBJ_DEBUG) -o $(OUT_DEBUG)
+
+$(OBJDIR_DEBUG)/AboutDialog.o: AboutDialog.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c AboutDialog.cpp -o $(OBJDIR_DEBUG)/AboutDialog.o
+
+$(OBJDIR_DEBUG)/BackgroundMonitor.o: BackgroundMonitor.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c BackgroundMonitor.cpp -o $(OBJDIR_DEBUG)/BackgroundMonitor.o
+
+$(OBJDIR_DEBUG)/DeviceInfo.o: DeviceInfo.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c DeviceInfo.cpp -o $(OBJDIR_DEBUG)/DeviceInfo.o
+
+$(OBJDIR_DEBUG)/GUIFrame.o: GUIFrame.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c GUIFrame.cpp -o $(OBJDIR_DEBUG)/GUIFrame.o
+
+$(OBJDIR_DEBUG)/LibreScribe.o: LibreScribe.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c LibreScribe.cpp -o $(OBJDIR_DEBUG)/LibreScribe.o
 
