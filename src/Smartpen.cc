@@ -1,5 +1,5 @@
 /* -*- Mode: C++; coding: utf-8; indent-tabs-mode: nil; c-basic-offset: 4; tab-width: 4 -*- */
-/* Smartpen.cpp
+/* Smartpen.cc
  * This file is part of LibreScribe.
  *
  * LibreScribe is free software: you can redistribute it and/or modify
