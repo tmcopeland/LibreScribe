@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with LibreScribe.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __LIBRESCRIBE_ABOUTDIALOG_H__
-#define __LIBRESCRIBE_ABOUTDIALOG_H__
+#ifndef __LIBRESCRIBE_ABOUT_DIALOG_H__
+#define __LIBRESCRIBE_ABOUT_DIALOG_H__
 
 #ifndef WX_PRECOMP
 	//(*HeadersPCH(AboutDialog)

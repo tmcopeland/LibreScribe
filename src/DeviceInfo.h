@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License
 along with LibreScribe.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef DEVICEINFO_H
-#define DEVICEINFO_H
+#ifndef __LIBRESCRIBE_DEVICE_INFO_H__
+#define __LIBRESCRIBE_DEVICE_INFO_H__
 
 #include <libudev.h>
 #include <string>
@@ -83,4 +83,4 @@ class DeviceInfo: public wxDialog
 		DECLARE_EVENT_TABLE()
 };
 
-#endif
+#endif // __LIBRESCRIBE_DEVICE_INFO_H__
