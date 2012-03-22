@@ -32,33 +32,33 @@
 
 class AboutDialog: public wxDialog
 {
-	public:
+    public:
+        
+        AboutDialog(wxWindow* parent,wxWindowID id=wxID_ANY);
+        virtual ~AboutDialog();
+        
+        //(*Declarations(AboutDialog)
+        wxStaticText* libreScribeVersionLabel;
+        wxStaticBitmap* libreScribeLogoBitmap;
+        wxStaticText* descriptionText;
+        wxStaticLine* aboutDialogSeparator;
+        //*)
+    
+    protected:
+        
+        //(*Identifiers(AboutDialog)
+        static const long idLogoBitmap;
+        static const long idLibreScribeVersionLabel;
+        static const long idAboutDialogSeparator;
+        static const long idDescriptionText;
+        //*)
+    
+    private:
+        
+        //(*Handlers(AboutDialog)
+        //*)
 
-		AboutDialog(wxWindow* parent,wxWindowID id=wxID_ANY);
-		virtual ~AboutDialog();
-
-		//(*Declarations(AboutDialog)
-		wxStaticText* libreScribeVersionLabel;
-		wxStaticBitmap* libreScribeLogoBitmap;
-		wxStaticText* descriptionText;
-		wxStaticLine* aboutDialogSeparator;
-		//*)
-
-	protected:
-
-		//(*Identifiers(AboutDialog)
-		static const long idLogoBitmap;
-		static const long idLibreScribeVersionLabel;
-		static const long idAboutDialogSeparator;
-		static const long idDescriptionText;
-		//*)
-
-	private:
-
-		//(*Handlers(AboutDialog)
-		//*)
-
-		DECLARE_EVENT_TABLE()
+        DECLARE_EVENT_TABLE()
 };
 
 #endif // __LIBRESCRIBE_ABOUT_DIALOG_H__
