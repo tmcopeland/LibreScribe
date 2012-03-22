@@ -6,3 +6,4 @@ wx_pch.h.gch/
 *.pyc
 *.depend
 *.layout
+*.*~
