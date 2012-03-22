@@ -8,3 +8,6 @@ wx_pch.h.gch/
 *.depend
 *.layout
 *~
+libtool
+Makefile.in
+autom4te.cache/
