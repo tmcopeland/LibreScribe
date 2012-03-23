@@ -81,60 +81,60 @@ librescribe_LDADD =\
 librescribe_LINK = `sh -c -x "g++"`
 
 #all: before-build build-debug build-release after-build
-all: info before-build build-debug after-build
+#all: info before-build build-debug after-build
 
 #clean: clean-debug clean-release
-clean-local: clean-debug
+#clean-local: clean-debug
 
-info-local:
-	echo -e "Python cflags: $(python_CFLAGS)"
-	echo -e "Python libs: $(python_LIBS)"
+#info-local:
+#	echo -e "Python cflags: $(python_CFLAGS)"
+#	echo -e "Python libs: $(python_LIBS)"
 
-before-build:
-	cd $(PROJECT_DIRECTORY); rm -rfv ./bin
-	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f configure ] || sh autogen.sh
-	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f Makefile ] || ./configure
-	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f libusb/.libs/libusb-1.0.a ] || make
+#before-build:
+#	cd $(PROJECT_DIRECTORY); rm -rfv ./bin
+#	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f configure ] || sh autogen.sh
+#	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f Makefile ] || ./configure
+#	false && cd $(PROJECT_DIRECTORY)/libusb/; [ -f libusb/.libs/libusb-1.0.a ] || make
 
-after-build:
-	cd $(PROJECT_DIRECTORY)
-	find ./bin/ -mindepth 1 -maxdepth 1 -type d | xargs -n 1 cp -rfv -L ./res ./xdg
-	find ./bin/ -mindepth 1 -maxdepth 1 -type d | xargs -n 1 cp -fv -L ./stf.py ./convert_stfs.sh
+#after-build:
+#	cd $(PROJECT_DIRECTORY)
+#	find ./bin/ -mindepth 1 -maxdepth 1 -type d | xargs -n 1 cp -rfv -L ./res ./xdg
+#	find ./bin/ -mindepth 1 -maxdepth 1 -type d | xargs -n 1 cp -fv -L ./stf.py ./convert_stfs.sh
 
-before-debug:
-	test -d bin/Debug || mkdir -p bin/Debug
-	test -d $(OBJDIR_DEBUG) || mkdir -p $(OBJDIR_DEBUG)
+#before-debug:
+#	test -d bin/Debug || mkdir -p bin/Debug
+#	test -d $(OBJDIR_DEBUG) || mkdir -p $(OBJDIR_DEBUG)
 
-after-debug:
+#after-debug:
 	
-build-debug:
-	before-debug out-debug after-debug
+#build-debug:
+#	before-debug out-debug after-debug
 
-debug: before-build build-debug after-build
+#debug: before-build build-debug after-build
 
-out-debug: $(OBJ_DEBUG) $(DEP_DEBUG)
-	$(librescribe_LINK) $(librescribe_LDFLAGS) $(librescribe_LDADD) $(OBJ_DEBUG) -o $(OUT_DEBUG)
+#out-debug: $(OBJ_DEBUG) $(DEP_DEBUG)
+#	$(librescribe_LINK) $(librescribe_LDFLAGS) $(librescribe_LDADD) $(OBJ_DEBUG) -o $(OUT_DEBUG)
 
-$(OBJDIR_DEBUG)/AboutDialog.o: AboutDialog.cc
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c AboutDialog.cc -o $(OBJDIR_DEBUG)/AboutDialog.o
+#$(OBJDIR_DEBUG)/AboutDialog.o: AboutDialog.cc
+#	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c AboutDialog.cc -o $(OBJDIR_DEBUG)/AboutDialog.o
 
-$(OBJDIR_DEBUG)/BackgroundMonitor.o: BackgroundMonitor.cc
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c BackgroundMonitor.cc -o $(OBJDIR_DEBUG)/BackgroundMonitor.o
+#$(OBJDIR_DEBUG)/BackgroundMonitor.o: BackgroundMonitor.cc
+#	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c BackgroundMonitor.cc -o $(OBJDIR_DEBUG)/BackgroundMonitor.o
 
-$(OBJDIR_DEBUG)/DeviceInfo.o: DeviceInfo.cc
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c DeviceInfo.cc -o $(OBJDIR_DEBUG)/DeviceInfo.o
+#$(OBJDIR_DEBUG)/DeviceInfo.o: DeviceInfo.cc
+#	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c DeviceInfo.cc -o $(OBJDIR_DEBUG)/DeviceInfo.o
 
-$(OBJDIR_DEBUG)/GUIFrame.o: GUIFrame.cc
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c GUIFrame.cc -o $(OBJDIR_DEBUG)/GUIFrame.o
+#$(OBJDIR_DEBUG)/GUIFrame.o: GUIFrame.cc
+#	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c GUIFrame.cc -o $(OBJDIR_DEBUG)/GUIFrame.o
 
-$(OBJDIR_DEBUG)/LibreScribe.o: LibreScribe.cc
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c LibreScribe.cc -o $(OBJDIR_DEBUG)/LibreScribe.o
+#$(OBJDIR_DEBUG)/LibreScribe.o: LibreScribe.cc
+#	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c LibreScribe.cc -o $(OBJDIR_DEBUG)/LibreScribe.o
 
-$(OBJDIR_DEBUG)/Smartpen.o: Smartpen.cc
-	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c Smartpen.cc -o $(OBJDIR_DEBUG)/Smartpen.o
+#$(OBJDIR_DEBUG)/Smartpen.o: Smartpen.cc
+#	$(CXX) $(AM_CPPFLAGS) $(AM_CXXFLAGS) $(AM_CFLAGS) $(librescribe_LDADD) $(librescribe_LDFLAGS) -c Smartpen.cc -o $(OBJDIR_DEBUG)/Smartpen.o
 
-clean-debug:
-	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
-	rm -rf $(PROJECT_DIRECTORY)/bin/Debug
-	rm -rf $(OBJDIR_DEBUG)
+#clean-debug:
+#	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
+#	rm -rf $(PROJECT_DIRECTORY)/bin/Debug
+#	rm -rf $(OBJDIR_DEBUG)
 
