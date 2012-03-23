@@ -17,3 +17,13 @@ Makefile
 src/Makefile
 Makefile.in
 src/Makefile.in
+autoscan.log
+config.status
+configure
+config.h
+mkinstalldirs
+src/.deps/
+config.rpath
+configure.ac.bak
+config.log
+configure.scan
