@@ -15,3 +15,5 @@ po
 stamp-h1
 Makefile
 src/Makefile
+Makefile.in
+src/Makefile.in
