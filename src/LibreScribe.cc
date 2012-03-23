@@ -29,19 +29,33 @@
 #include "GUIFrame.h"
 #include <wx/image.h>
 //*)
+//#include <iostream>
 
 IMPLEMENT_APP(LibreScribe);
 
 bool LibreScribe::OnInit() {
-	//(*AppInitialize
-	bool wxsOK = true;
-	wxInitAllImageHandlers();
-	if ( wxsOK )
-	{
-		GUIFrame* Frame = new GUIFrame(0);
-		Frame->Show();
-		SetTopWindow(Frame);
-	}
-	//*)
-	return wxsOK;
+/*    for (int i = 0; i < this->argc; i++)
+    {
+        if (this->argv[i] == "--help")
+        {
+            std::cout << this->argv[0] << " version "
+                      << LibreScribe_VERSION_MAJOR << " "
+                      << LibreScribe_VERSION_MINOR << std::endl;
+            
+            return 0;
+        }
+    }/* Maybe we'll use CMake later... */
+    
+    //(*AppInitialize
+    bool wxsOK = true;
+    wxInitAllImageHandlers();
+    if (wxsOK)
+    {
+        GUIFrame* Frame = new GUIFrame(0);
+        Frame->Show();
+        SetTopWindow(Frame);
+    }
+    //*)
+    return wxsOK;
 }
+
