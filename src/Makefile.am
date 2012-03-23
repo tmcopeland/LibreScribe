@@ -44,7 +44,7 @@ AM_CFLAGS =\
 	$(glib_CFLAGS)\
 	$(libusb_CFLAGS)\
 	$(openobex_CFLAGS)\
-	$(Python_CFLAGS)\
+	$(python_CFLAGS)\
 	$(udev_CFLAGS)\
 	$(WX_CFLAGS_ONLY)
 
@@ -74,7 +74,7 @@ librescribe_LDADD =\
 	$(libusb_LIBS)\
 	$(libxmlxx_LIBS)\
 	$(openobex_LIBS)\
-	$(Python_LIBS)\
+	$(python_LIBS)\
 	$(udev_LIBS)\
 	$(WX_LIBS)
 
@@ -87,8 +87,8 @@ all: info before-build build-debug after-build
 clean-local: clean-debug
 
 info-local:
-	echo -e "Python cflags: $(Python_CFLAGS)"
-	echo -e "Python libs: $(Python_LIBS)"
+	echo -e "Python cflags: $(python_CFLAGS)"
+	echo -e "Python libs: $(python_LIBS)"
 
 before-build:
 	cd $(PROJECT_DIRECTORY); rm -rfv ./bin
