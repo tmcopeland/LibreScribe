@@ -12,3 +12,6 @@ libtool
 Makefile.in
 autom4te.cache/
 po
+stamp-h1
+Makefile
+src/Makefile
